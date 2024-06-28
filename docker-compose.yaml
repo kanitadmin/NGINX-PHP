@@ -20,6 +20,14 @@ services:
     image: bucchub/php-fpm:8.0
     container_name: php-80-01
     restart: always
+    environment:
+      TZ: 'Asia/Bangkok'
+      PHP_MAX_EXECUTION_TIME: 60
+      PHP_MAX_INPUT_VARS: 10000
+      PHP_MEMORY_LIMIT: '256M'
+      PHP_POST_MAX_FILESIZE: '256M'
+      PHP_UPLOAD_MAX_FILESIZE: '50M'
+      PHP_MAX_INPUT_TIME: 60
     volumes:
       - web-data:/var/www/html
       - php-80-config:/usr/local/etc

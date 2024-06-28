@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  web:
+    image: nginx:latest
+    container_name: web
+    restart: always
+    environment:
+      TZ: 'Asia/Bangkok'
+    ports:
+      - '80:80'
+    volumes:
+      - web-data:/var/www/html
+      - web-config:/etc/nginx
+    #logging:
+    #  driver: syslog
+    #  options:
+    #    syslog-address: "tcp://127.0.0.1:514"
+    #    tag: "nginx"
+  php-80-01:
+    image: bucchub/php-fpm:8.0
+    container_name: php-80-01
+    restart: always
+    volumes:
+      - web-data:/var/www/html
+      - php-80-config:/usr/local/etc
+networks:
+  default:
+    name: web
+volumes:
+  web-data:
+  web-config:
+  php-80-config:

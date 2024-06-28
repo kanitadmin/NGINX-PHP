@@ -11,11 +11,11 @@ services:
     volumes:
       - web-data:/var/www/html
       - web-config:/etc/nginx
-    #logging:
-    #  driver: syslog
-    #  options:
-    #    syslog-address: "tcp://127.0.0.1:514"
-    #    tag: "nginx"
+    logging:
+      driver: gelf
+      options:
+          gelf-address: "tcp://127.0.0.1:514"
+        tag: "nginx"
   php-80-01:
     image: bucchub/php-fpm:8.0
     container_name: php-80-01
